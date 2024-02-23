@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_23_162614) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_23_162831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "vocab_id", null: false
+    t.bigint "wordbank_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["vocab_id"], name: "index_bookmarks_on_vocab_id"
+    t.index ["wordbank_id"], name: "index_bookmarks_on_wordbank_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -40,4 +49,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_162614) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bookmarks", "vocabs"
+  add_foreign_key "bookmarks", "wordbanks"
 end
