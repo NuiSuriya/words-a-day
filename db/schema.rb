@@ -10,17 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_23_162831) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_25_222028) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bookmarks", force: :cascade do |t|
+  create_table "flashcard_words", force: :cascade do |t|
+    t.bigint "flashcard_id", null: false
     t.bigint "vocab_id", null: false
-    t.bigint "wordbank_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["vocab_id"], name: "index_bookmarks_on_vocab_id"
-    t.index ["wordbank_id"], name: "index_bookmarks_on_wordbank_id"
+    t.index ["flashcard_id"], name: "index_flashcard_words_on_flashcard_id"
+    t.index ["vocab_id"], name: "index_flashcard_words_on_vocab_id"
+  end
+
+  create_table "flashcards", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_flashcards_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,12 +51,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_162831) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "wordbanks", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "bookmarks", "vocabs"
-  add_foreign_key "bookmarks", "wordbanks"
+  add_foreign_key "flashcard_words", "flashcards"
+  add_foreign_key "flashcard_words", "vocabs"
+  add_foreign_key "flashcards", "users"
 end

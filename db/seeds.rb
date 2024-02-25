@@ -9,3 +9,6 @@
 #   end
 # https://dictionaryapi.dev
 
+technology_words = ["Algorithm", "Database", "Software", "Interface","Programming", "Cybersecurity", "Encryption", "Artificial Intelligence", "Augmented Reality"]
+# work_words = ["Work", "Job", "Career", "Employment", "Occupation", "Profession", "Vocation", "Trade", "Craft", "Business"]
+
