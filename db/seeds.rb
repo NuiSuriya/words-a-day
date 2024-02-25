@@ -8,8 +8,39 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 # https://dictionaryapi.dev
+# require 'httparty'
+puts "Deleting all users"
+User.destroy_all
+puts "Deleting all flashcards"
+Flashcard.destroy_all
 
-technology_words = ["Algorithm", "Database", "Software", "Interface","Programming", "Cybersecurity", "Encryption", "Artificial Intelligence", "Augmented Reality"]
+technology_words = ["Algorithm", "Database", "Software", "Interface", "Programming", "Cybersecurity", "Encryption"]
 # work_words = ["Work", "Job", "Career", "Employment", "Occupation", "Profession", "Vocation", "Trade", "Craft", "Business"]
-user_1 = User.create!(email: "nui@mail.com", password: "password")
-# Flashcard.create!(name: "Technology", user: user_1)
+puts "Creating users"
+user1 = User.create!(email: "nui@mail.com", password: "password")
+puts "Creating flashcards"
+technology = Flashcard.create!(name: "Technology", user: user1)
+
+technology_words.each do |word|
+  url = "https://api.dictionaryapi.dev/api/v2/entries/en/#{word}"
+  reponse = HTTParty.get(url)
+  data = JSON.parse(reponse.body)
+  word = data[0]["word"]
+  meanings = data[0]["meanings"]
+
+  puts "Creating vocabs"
+  vocabs = meanings.map do |meaning|
+    part_of_speech = meaning["partOfSpeech"]
+    definition = meaning["definitions"][0]["definition"]
+    Vocab.create!(
+      word: word,
+      part_of_speech: part_of_speech,
+      definition: definition
+    )
+  end
+
+  puts "Creating flashcard words"
+  vocabs.each do |w|
+    FlashcardWord.create!(flashcard: technology, vocab: w)
+  end
+end
