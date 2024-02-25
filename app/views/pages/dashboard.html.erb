@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>My wordbanks</h1>
+
+  <% @flashcards.each do |flashcard| %>
+    <%= link_to flashcard.name, "#" %>
+
+  <% end %>
+
+</div>
