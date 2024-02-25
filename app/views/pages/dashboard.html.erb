@@ -2,7 +2,7 @@
   <h1>My wordbanks</h1>
 
   <% @flashcards.each do |flashcard| %>
-    <%= link_to flashcard.name, "#" %>
+    <%= link_to flashcard.name, flashcard_path(flashcard) %>
 
   <% end %>
 
