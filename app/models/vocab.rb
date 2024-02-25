@@ -1,3 +1,3 @@
 class Vocab < ApplicationRecord
-  has_many :flashcard_vocabs
+  has_many :flashcard_words
 end
