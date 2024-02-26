@@ -1,7 +1,7 @@
 <div class="swiper-container" data-controller="swiper">
   <div class="swiper-wrapper">
     <% @vocabs.each do |vocab| %>
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-vocab-id="<%= vocab.id %>">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><%= vocab.word %></h5>

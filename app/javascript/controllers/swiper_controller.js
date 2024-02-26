@@ -7,8 +7,10 @@ export default class extends Controller {
       effect: 'cards',
       on: {
         slideChange: () => {
-          // console.log('Slide changed');
-          console.log(this.swiper.activeIndex);
+          const direction = this.swiper.activeIndex > this.swiper.previousIndex ? 'right' : 'left';
+          const studied = direction === 'left';
+          const vocabId = this.swiper.slides[this.swiper.activeIndex].dataset.vocabId
+          console.log(vocabId);
         },
       },
     });
