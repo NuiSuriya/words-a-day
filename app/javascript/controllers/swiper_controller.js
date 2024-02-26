@@ -10,9 +10,20 @@ export default class extends Controller {
           const direction = this.swiper.activeIndex > this.swiper.previousIndex ? 'right' : 'left';
           const studied = direction === 'left';
           const vocabId = this.swiper.slides[this.swiper.activeIndex].dataset.vocabId
-          // console.log(vocabId);
+          console.log(vocabId);
 
-          fet
+          fetch(`/flashcard_words/${vocabId}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+              body: JSON.stringify({ studied: studied })
+          })
+          .then(() => {
+            this.swiper.slides[this.swiper.activeIndex]
+          })
+
         },
       },
     });
