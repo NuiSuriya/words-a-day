@@ -1,17 +1,21 @@
 <div class="container">
   <h1><%= @flashcard.name %></h1>
 
+  <swiper-container effect="cards">
+    <% @vocabs.each do |vocab| %>
+      <swiper-slide>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= vocab.word %></h5>
+            <p class="card-text"><em><%= vocab.part_of_speech %></em></p>
+            <p class="card-text"><strong>definition:</strong>
+              <%= vocab.definition %>
+            </p>
+          </div>
+        </div>
+      </swiper-slide>
+    <% end %>
+  </swiper-container>
 
-  <% @vocabs.each do |vocab| %>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= vocab.word %></h5>
-        <p class="card-text"><em><%= vocab.part_of_speech %></em></p>
-        <p class="card-text"><strong>definition:</strong>
-          <%= vocab.definition %>
-        </p>
-      </div>
-    </div>
-  <% end %>
 
 </div>
