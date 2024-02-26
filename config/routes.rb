@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   get "dashboard", to: "pages#dashboard"
   resources :flashcards, only: [:show]
+
+  resources :flashcard_words, only: [:update]
 end
