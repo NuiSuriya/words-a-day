@@ -1,5 +1,15 @@
 <div class="swiper-container" data-controller="swiper">
   <div class="swiper-wrapper">
+
+    <%# COVER CARD to swiper right%>
+    <div class="swiper-slide">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Welcome to your wordbank</h5>
+        </div>
+      </div>
+    </div>
+
     <% @vocabs.each do |vocab| %>
       <div class="swiper-slide" data-vocab-id="<%= vocab.flashcard_words.first.id %>">
         <div class="card">

@@ -10,7 +10,7 @@ export default class extends Controller {
           const direction = this.swiper.activeIndex > this.swiper.previousIndex ? 'right' : 'left';
           const studied = direction === 'left';
           const vocabId = this.swiper.slides[this.swiper.activeIndex].dataset.vocabId
-          console.log(vocabId);
+          // console.log(vocabId);
 
           fetch(`/flashcard_words/${vocabId}`, {
             method: 'PATCH',
@@ -21,7 +21,8 @@ export default class extends Controller {
               body: JSON.stringify({ studied: studied })
           })
           .then(() => {
-            this.swiper.slides[this.swiper.activeIndex]
+            // this.swiper.slides[this.swiper.activeIndex]
+            // this.swiper.removeSlide(this.swiper.activeIndex);
           })
 
         },
