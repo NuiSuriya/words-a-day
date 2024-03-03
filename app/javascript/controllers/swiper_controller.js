@@ -3,6 +3,11 @@ import { Controller } from "@hotwired/stimulus"
 import Hammer from "hammerjs";
 
 export default class extends Controller {
+  static targets = [ "swiperCard" ]
+
+  static values = {
+    vocab: Number
+  }
   connect() {
     // SWIPER.js
     // this.swiper = new Swiper(this.element, {
@@ -30,6 +35,6 @@ export default class extends Controller {
     // });
 
     // Hammer.js
-    console.log(this.element);
+    console.log(this.vocabValue);
   }
 }
