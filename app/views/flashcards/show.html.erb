@@ -1,23 +1,30 @@
 <div class="container">
-  <div class="">
-
+  <div id="swiper">
 
     <% @vocabs.each do |vocab| %>
-      <div class=""
+      <div
         data-controller="swiper"
         data-swiper-vocab-value="<%= vocab.flashcard_words.first.id %>"
-        data-vocab-id="<%= vocab.flashcard_words.first.id %>">
-        <div class="card"
-            data-swiper-target="swiperCard">
+        data-vocab-id="<%= vocab.flashcard_words.first.id %>"
+        class="card"
+        data-swiper-target="swiperCard">
+
           <div class="card-body">
+
             <h5 class="card-title"><%= vocab.word %></h5>
             <p class="card-text"><em><%= vocab.part_of_speech %></em></p>
             <p class="card-text"><strong>definition:</strong>
               <%= vocab.definition %>
             </p>
-          </div>
+
         </div>
       </div>
     <% end %>
   </div>
+
+  <div>
+    <button id="nope"><i class="fa fa-remove"></i></button>
+    <button id="love"><i class="fa fa-heart"></i></button>
+  </div>
+
 </div>
